@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include<unistd.h>
+#include<stdlib.h>
+
+int myrandom(int max)
+{
+    int x;
+    x=rand()%max+1;
+    
+    return x;
+}
+
+
+int main()
+
+{       
+    int bal,bet,guess,dice;
+    srand(getpid());
+    bal=1000;
+   while(1)
+ {
+      printf("MAKE YOUR BET :");
+      fflush(stdout);
+      scanf("%d",&bet);
+    
+      printf("ENTER YOUR GUESS(1-6) :");
+      scanf("%d",&guess);
+      if(guess==0)
+       {
+        return 0;
+       }
+      printf("THROWING THE DICE\n");
+      sleep(2);
+      dice=myrandom(6);
+      printf("DICE VALUE = %d\n",dice);
+    
+      if(guess!=dice)
+       {
+        bal=bal-bet;
+        printf("SORRY YOU LOST 'WOMP WOMP'\n");
+        }
+    
+      else
+        {
+        bet*=3;
+        bal+=bet;
+            
+        }
+        
+     if(guess==dice)
+     {
+         printf("YOU WON\n");
+     }
+    
+    if(bal==0)
+    {
+        printf("GAME OVER\n");
+    }
+    
+    
+   printf("BALANCE :$%d\n",bal);
+   
+    
+ }    
+    
+    
+    
+    
+   
+    return 0;
+}
